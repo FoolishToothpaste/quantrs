@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quantrs"
+version = "0.1.0"
+description = "Quantum Computing System for Photonic Quantum Computer, built from scratch by Soham Roy, with help of Qiskit library"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+dependencies = []
+
+keywords = [
+    "quantum computing",
+    "quantum circuit",
+    "bell state",
+    "quantum teleportation",
+    "qubit",
+    "statevector simulator",
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov",
+]
+
+[project.urls]
+Homepage = "https://github.com/FoolishToothpaste/quantrs"
+Issues   = "https://github.com/FoolishToothpaste/quantrs/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["quantrs*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
