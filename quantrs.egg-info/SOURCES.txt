@@ -14,9 +14,3 @@ quantrs.egg-info/SOURCES.txt
 quantrs.egg-info/dependency_links.txt
 quantrs.egg-info/requires.txt
 quantrs.egg-info/top_level.txt
-tests/test_bell.py
-tests/test_circuit.py
-tests/test_gates.py
-tests/test_linalg.py
-tests/test_state.py
-tests/test_teleport.py

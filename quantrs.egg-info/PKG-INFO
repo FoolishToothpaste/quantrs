@@ -39,7 +39,7 @@ pip install quantrs
 Or from source:
 
 ```bash
-git clone https://github.com/yourname/quantrs
+git clone https://github.com/FoolishToothpaste/quantrs
 cd quantrs
 pip install -e ".[dev]"
 ```
@@ -233,15 +233,3 @@ tp.describe()
 
 ---
 
-## Running tests
-
-```bash
-pip install quantrs[dev]
-pytest tests/ -v
-```
-
----
-
-## License
-
-MIT

@@ -93,11 +93,11 @@ class Circuit:
     def __init__(
         self,
         num_qubits: int,
-        num_clbits: Optional[int] = None,
+        num_clbits: int = 0,
         name: str = "circuit",
     ) -> None:
         self.num_qubits = num_qubits
-        self.num_clbits = num_clbits if num_clbits is not None else num_qubits
+        self.num_clbits = num_clbits
         self.name = name
         self._instructions: List[Instruction] = []
         self._measured: bool = False
@@ -212,14 +212,34 @@ class Circuit:
 
     def measure(self, qubit: int, clbit: int) -> "Circuit":
         """Measure qubit into classical bit clbit."""
+        if self.num_clbits == 0:
+            raise ValueError(
+                "No classical bits have been allocated. "
+                "Create the circuit with a non-zero num_clbits, "
+                "e.g. Circuit(2, 2) for 2 qubits and 2 classical bits."
+            )
         if clbit < 0 or clbit >= self.num_clbits:
-            raise ValueError(f"Classical bit {clbit} out of range.")
+            raise ValueError(
+                f"Classical bit index {clbit} is out of range. "
+                f"This circuit has {self.num_clbits} classical bit(s) (indices 0 to {self.num_clbits - 1})."
+            )
         self._measured = True
         return self._add("measure", [qubit], clbits=[clbit])
 
     def measure_all(self) -> "Circuit":
         """Measure all qubits into their corresponding classical bits."""
-        for i in range(min(self.num_qubits, self.num_clbits)):
+        if self.num_clbits == 0:
+            raise ValueError(
+                "No classical bits have been allocated. "
+                "Create the circuit with num_clbits equal to num_qubits, "
+                "e.g. Circuit(2, 2)."
+            )
+        if self.num_clbits < self.num_qubits:
+            raise ValueError(
+                f"Not enough classical bits to measure all qubits: "
+                f"{self.num_qubits} qubits but only {self.num_clbits} classical bit(s)."
+            )
+        for i in range(self.num_qubits):
             self._add("measure", [i], clbits=[i])
         self._measured = True
         return self
