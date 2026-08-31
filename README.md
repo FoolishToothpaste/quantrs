@@ -17,7 +17,8 @@ Or from source:
 ```bash
 git clone https://github.com/FoolishToothpaste/quantrs
 cd quantrs
-pip install -e ".[dev]"
+bash setup_env.sh
+conda activate quantrs
 ```
 
 ---
