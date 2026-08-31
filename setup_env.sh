@@ -31,7 +31,12 @@ fi
 # Make sure conda is available in this session
 export PATH="$HOME/miniconda3/bin:$PATH"
 
-# Create the environment
+# ── Step 2: Accept conda Terms of Service ────────────────────────────────────
+echo "Accepting conda Terms of Service..."
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+
+# ── Step 3: Create the environment ───────────────────────────────────────────
 echo "Creating conda environment 'quantrs' with Python 3.10..."
 conda create -n quantrs python=3.10 -y
 
